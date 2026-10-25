@@ -12,7 +12,9 @@ Mimic high-performing reference videos and generate new video content from insid
 | Command | What it does |
 |---------|--------------|
 | `/video:analyze <url\|file>` | Analyze a reference video into a Style Blueprint JSON (shots, pacing, aspect). Needs ffmpeg; yt-dlp for URLs |
-| `/video:mimic <blueprint.json> --topic ...` | Turn a blueprint + your topic into per-shot prompts; add `--generate` to submit to Replicate |
+| `/video:watch <url>` | Claude opens the reference in the browser (Claude in Chrome extension), watches it shot by shot, and saves observations into the blueprint |
+| `/video:enrich <blueprint.json> <observations.json>` | Merge observations (hook text, shot descriptions, caption style, CTA, engagement) into a blueprint; builds one if none exists |
+| `/video:mimic <blueprint.json> --topic ...` | Turn a blueprint + your topic into per-shot prompts. `--platform tiktok\|reels\|shorts` adds platform framing and pacing advice, `--json` prints the full plan, `--generate` submits to Replicate |
 | `/video:generate` | Create a video from a text prompt (text→video) |
 | `/video:generate-image` | Create a video from an image + prompt (image→video) |
 | `/video:status <job-id>` | Check the status of a generation job |
@@ -44,3 +46,13 @@ Mimic high-performing reference videos and generate new video content from insid
 ```
 
 The blueprint copies structure and pacing, not footage. Only analyze videos you have the rights to use.
+
+## Watching a reference in the browser
+
+When the Claude in Chrome extension is available, prefer `/video:watch <url>`: it reads what the page shows (title, hashtags, engagement), measures the `<video>` element, seeks to each shot and screenshots it, then writes `observations.json` and runs `/video:enrich`. This fills the fields ffmpeg cannot see: hook text and type, shot descriptions, on-screen text, caption style, music, and CTA. Combine both routes: run `/video:analyze` first for exact cut times, then `/video:watch` to describe each shot. If a blueprint has keyframes (`--keyframes dir`), you can also view those images and describe them yourself, then run `/video:enrich`.
+
+Never bypass logins, paywalls or access controls, and only study videos the user may use.
+
+## Platforms
+
+`/video:mimic --platform tiktok|reels|shorts` applies short-form presets (aspect, duration range, hook timing, caption safe zones) and prints warnings when the reference doesn't fit them. The presets are approximate; check each platform's current specs.

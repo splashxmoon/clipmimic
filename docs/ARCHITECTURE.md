@@ -145,6 +145,28 @@ Canonical artifact between analyze and mimic/generate. Version field: **`schemaV
 }
 ```
 
+**Optional additive fields (URL references only; schemaVersion stays `"1.0"`).** `/video:analyze` adds these when the source is a URL. Consumers must treat them as absent-tolerant. Skip with `--no-metadata` / `--no-transcript`.
+
+```json
+{
+  "metadata": {
+    "title": "string | null",
+    "description": "string | null",
+    "uploader": "string | null",
+    "uploadDate": "YYYY-MM-DD | null",
+    "durationSec": "number | null",
+    "hashtags": ["string — lowercase, no '#'"],
+    "thumbnail": "string | null",
+    "chapters": [{ "startSec": 0, "endSec": 5, "title": "string" }],
+    "platform": "string | null — yt-dlp extractor, lowercased (youtube, tiktok, instagram, ...)"
+  },
+  "engagement": { "viewCount": "number | null", "likeCount": "number | null", "commentCount": "number | null" },
+  "warnings": ["string — short notes when metadata or transcript could not be fetched"]
+}
+```
+
+Metadata comes from `yt-dlp --dump-single-json --skip-download`. The transcript comes from the URL's own captions (manual or auto, `en.*`); no speech-to-text. When captions exist, `audio.transcript` and `audio.hasSpeech` are filled and `hook.text` is the transcript spoken before `hook.endSec`. Failures never fail analysis: they are recorded in `warnings`.
+
 **Not in schemaVersion 1.0** (do not document as current): top-level `scenes`, `keyframes` array as the shot model, or a separate `style` / `transcript` object — those were interim shapes during overlap; use `shots[]`, `audio.transcript`, and fields above.
 
 **Rules for producers of this JSON**

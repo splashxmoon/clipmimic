@@ -1,7 +1,7 @@
 {
   "name": "clipmimic",
   "version": "0.1.0",
-  "description": "Open-source Claude Code skill to analyze reference videos into a Style Blueprint and mimic their structure for new topics, plus text/image→video via Replicate",
+  "description": "Open-source Claude Code skill to analyze reference videos into a Style Blueprint and mimic their structure for new topics, plus text/image\u2192video via Replicate",
   "private": true,
   "type": "module",
   "engines": {
@@ -13,10 +13,25 @@
   },
   "keywords": [
     "claude-code",
-    "skill",
+    "claude-code-skill",
+    "agent-skills",
     "video-generation",
-    "mimic",
-    "ai-video"
+    "ai-video",
+    "short-form-video",
+    "tiktok",
+    "instagram-reels",
+    "youtube-shorts",
+    "reference-video",
+    "video-analysis",
+    "style-blueprint",
+    "ugc-ads",
+    "replicate",
+    "text-to-video",
+    "image-to-video",
+    "ffmpeg",
+    "yt-dlp",
+    "claude-in-chrome",
+    "mimic"
   ],
   "repository": {
     "type": "git",

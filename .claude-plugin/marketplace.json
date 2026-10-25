@@ -7,7 +7,15 @@
     {
       "name": "video",
       "source": "./",
-      "description": "Mimic reference videos and generate new ones"
+      "description": "Mimic TikTok, Reels and Shorts references and generate new shots in Claude Code",
+      "keywords": [
+        "video",
+        "tiktok",
+        "instagram-reels",
+        "youtube-shorts",
+        "video-generation",
+        "ai-video"
+      ]
     }
   ],
   "description": "Mimic reference videos and generate new ones in Claude Code"

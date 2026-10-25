@@ -1,8 +1,22 @@
 {
   "name": "video",
   "version": "0.1.0",
-  "description": "Mimic high-performing reference videos and generate new video from Claude Code",
-  "author": { "name": "Arun Dass" },
+  "description": "Mimic high-performing TikTok, Reels and Shorts references: analyze or watch a video, build a Style Blueprint, plan new shots, optionally generate with Replicate",
+  "author": {
+    "name": "Arun Dass"
+  },
   "license": "MIT",
-  "keywords": ["video", "video-generation", "claude-code", "skill", "short-form"]
+  "keywords": [
+    "video",
+    "video-generation",
+    "claude-code",
+    "skill",
+    "short-form",
+    "tiktok",
+    "instagram-reels",
+    "youtube-shorts",
+    "reference-video",
+    "ugc-ads",
+    "ai-video"
+  ]
 }

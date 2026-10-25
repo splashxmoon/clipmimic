@@ -3,7 +3,7 @@
  * Analyze a reference video (URL or file) into a Style Blueprint JSON.
  *
  * Usage (from Claude Code):
- *   /video:analyze <url|file> [--out blueprint.json] [--keyframes dir] [--dry-run]
+ *   /video:analyze <url|file> [--out blueprint.json] [--keyframes dir] [--no-metadata] [--no-transcript] [--dry-run]
  *
  * Requires: ffmpeg + ffprobe; yt-dlp for URLs. Only analyze videos you have the rights to use.
  */
@@ -13,7 +13,7 @@ import { ingest } from "../lib/ingest.js";
 import { analyze } from "../lib/analyze.js";
 
 function parseArgs(argv) {
-  const opts = { ref: "", out: "blueprint.json", keyframes: "", dryRun: false };
+  const opts = { ref: "", out: "blueprint.json", keyframes: "", dryRun: false, metadata: true, transcript: true };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--out" || a === "--keyframes") {
@@ -22,6 +22,8 @@ function parseArgs(argv) {
       if (a === "--out") opts.out = value;
       else opts.keyframes = value;
     }
+    else if (a === "--no-metadata") opts.metadata = false;
+    else if (a === "--no-transcript") opts.transcript = false;
     else if (a === "--dry-run") opts.dryRun = true;
     else opts.ref = opts.ref ? `${opts.ref} ${a}` : a;
   }
@@ -29,15 +31,16 @@ function parseArgs(argv) {
 }
 
 async function main() {
-  const { ref, out, keyframes, dryRun } = parseArgs(process.argv.slice(2));
+  const { ref, out, keyframes, dryRun, metadata, transcript } = parseArgs(process.argv.slice(2));
   const item = await ingest(ref, { dryRun });
   if (dryRun) {
     console.log(item.command || `Would analyze ${item.path}`);
     return;
   }
-  const bp = await analyze(item.path, { source: item.source, keyframesDir: keyframes || undefined });
+  const bp = await analyze(item.path, { source: item.source, keyframesDir: keyframes || undefined, metadata, transcript });
   await writeFile(out, JSON.stringify(bp, null, 2));
   console.log(`Blueprint saved to ${out}: ${bp.pacing.shotCount} shots, ${bp.durationSec.toFixed(1)}s, ${bp.aspect}, ${bp.pacing.cutsPerMinute} cuts/min.`);
+  for (const w of bp.warnings || []) console.warn(`warning: ${w}`);
 }
 
 main().catch((err) => {

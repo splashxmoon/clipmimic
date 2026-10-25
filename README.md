@@ -2,9 +2,9 @@
 
 # clipmimic
 
-**Study the rhythm. Make something new.** An open-source **Claude Code skill** for **AI video generation**: analyze a reference’s shot timing and pacing, turn it into a Style Blueprint, and create prompts for a new topic.
+**Study the rhythm. Make something new.** An open-source **Claude Code skill** for **AI video generation**: analyze a reference video from **TikTok, Instagram Reels, YouTube Shorts** or a local file, turn its shot timing, hook, captions and pacing into a Style Blueprint, and create prompts for a new topic.
 
-Use it to **mimic reference videos**’ structure and edit rhythm for **short-form** explainers, product demos and **UGC ads**. Replicate can optionally render new shots; final editing remains manual. Structural inspiration does not mean copying footage, scripts, music or a creator’s likeness.
+Use it to **mimic reference videos**’ structure and edit rhythm for **short-form** explainers, product demos and **UGC ads**. Claude can even watch the reference in your browser through the Claude in Chrome extension. Replicate can optionally render new shots; final editing remains manual. Structural inspiration does not mean copying footage, scripts, music or a creator’s likeness.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-294936)](LICENSE)
 ![Node.js 18+](https://img.shields.io/badge/node-%E2%89%A518-294936)
@@ -13,9 +13,13 @@ Use it to **mimic reference videos**’ structure and edit rhythm for **short-fo
 
 ![An illustrated editing strip becomes a structured blueprint, then a new set of shots. Diagram only, not generated footage.](assets/banner.svg)
 
-[Quickstart](#quickstart) · [Commands](#commands) · [What v0.1 does](#what-v01-does) · [FAQ](#faq) · [Contribute](CONTRIBUTING.md)
+[What is clipmimic?](#what-is-clipmimic) · [Quickstart](#quickstart) · [Commands](#commands) · [Watch in the browser](#watch-a-reference-in-the-browser) · [Platforms](#tiktok-reels-and-shorts-presets) · [What v0.1 does](#what-v01-does) · [FAQ](#faq) · [Contribute](CONTRIBUTING.md)
 
-> **v0.1 scope:** local reference analysis and per-shot prompt planning, with optional paid generation. No transcript extraction, semantic vision descriptions or automatic final-video assembly. Release packaging and slash-command registration must be verified against the tag you install; direct Node commands are provided below.
+> **v0.1 scope:** reference analysis (scene cuts, pacing, aspect, keyframes, page metadata and captions for URLs), browser-assisted observation, and per-shot prompt planning, with optional paid generation. No automatic final-video assembly. Verified end to end with ffmpeg and yt-dlp on a real public video; see [What v0.1 does](#what-v01-does).
+
+## What is clipmimic?
+
+clipmimic is a Claude Code skill and plugin that turns a high-performing reference video into a reusable **Style Blueprint** (hook, shots, pacing, captions, audio, call to action) and then writes new shot prompts for your own topic, in the same structure and rhythm. It supports TikTok, Instagram Reels and YouTube Shorts references, runs locally with ffmpeg, and can optionally send the shots to Replicate for generation. It copies structure and style, not footage.
 
 ## From reference to new shots
 
@@ -27,7 +31,7 @@ flowchart LR
     D --> E["Manual review and editing"]
 ```
 
-The blueprint keeps the timing inspectable. It records scene-cut boundaries, shot durations, pacing and aspect ratio; keyframe extraction is optional. Mimic uses that structure to build prompts about your topic. It does not identify the reference’s meaning or recreate a completed edit.
+The blueprint keeps the timing inspectable. It records scene-cut boundaries, shot durations, pacing and aspect ratio; for URLs it also records page metadata, engagement counts and the video’s own captions (hook text is taken from the first seconds of speech). Keyframe extraction is optional, and `/video:watch` can add hook type, shot descriptions, on-screen text and caption style. Mimic uses that structure to build prompts about your topic. It does not identify the reference’s meaning or recreate a completed edit.
 
 ## Quickstart
 
@@ -99,26 +103,51 @@ These are the documented Claude Code command names. Each has a matching script i
 
 | Command | Purpose | Requirements / output |
 | --- | --- | --- |
-| `/video:analyze <file-or-url> --out blueprint.json` | Detect scene cuts, shot durations, pacing and aspect | ffmpeg/ffprobe; yt-dlp for URLs. Optional `--keyframes <dir>` |
-| `/video:mimic blueprint.json --topic "..."` | Build per-shot prompts for your topic | Local planning; optional `--brand`, `--style`; `--generate` submits paid jobs |
+| `/video:analyze <file-or-url> --out blueprint.json` | Detect scene cuts, shot durations, pacing and aspect; for URLs also metadata, engagement and captions | ffmpeg/ffprobe; yt-dlp for URLs. Optional `--keyframes <dir>`, `--no-metadata`, `--no-transcript` |
+| `/video:watch <url>` | Claude watches the reference in your browser and records hook, shots, captions, CTA, engagement | Claude in Chrome extension; then runs `/video:enrich` |
+| `/video:enrich blueprint.json observations.json` | Merge observations into a blueprint (or build one from them) | Local; no network |
+| `/video:mimic blueprint.json --topic "..."` | Build per-shot prompts for your topic | Local planning; optional `--brand`, `--style`, `--platform tiktok\|reels\|shorts`, `--json`; `--generate` submits paid jobs |
 | `/video:generate <prompt>` | Generate video from a text prompt | Replicate token and compatible model |
 | `/video:generate-image <image-url-or-path> <prompt>` | Generate video from an image and prompt | Replicate token; image must be accessible in the format the model accepts; a local path is not automatically uploaded |
 | `/video:status <job-id>` | Inspect a prediction’s current state | Replicate token |
 | `/video:models` | List models through Replicate | Replicate token; results are not restricted to video models |
 
+## Watch a reference in the browser
+
+With the [Claude in Chrome](https://claude.com/chrome) extension, `/video:watch <url>` has Claude open the post in a tab you can see, read what the page shows (title, hashtags, views, likes, comments), measure the `<video>` element, seek to each shot and screenshot it. It writes what it saw to `observations.json` and runs `/video:enrich`, which fills the fields ffmpeg cannot: hook text and type, shot descriptions, on-screen text, caption style, music and CTA. Best results come from running `/video:analyze` first for exact cut times, then `/video:watch` to describe each shot. If the extension is not available, the command says so and falls back to `/video:analyze`.
+
+It only uses a browser session you control. It does not bypass logins, paywalls or access controls, and you are responsible for the right to study each video and for the platform’s terms.
+
+## TikTok, Reels and Shorts presets
+
+`/video:mimic blueprint.json --topic "..." --platform tiktok` (or `reels`, `shorts`) writes prompts for 9:16, adds caption safe-zone framing, carries over the reference’s hook line, caption style and CTA as style cues for new writing, and prints advice when the reference is too long, too slow, the wrong aspect, or opens too slowly for that platform. Add `--json` for the full plan. The presets are approximate public guidelines; check each platform’s current specs.
+
 ## What v0.1 does
 
 | Available scope | Still on the roadmap |
 | --- | --- |
-| Scene-cut detection and shot boundaries | Transcript and hook-text extraction |
-| Shot durations, pacing and aspect ratio | Vision-based scene descriptions |
-| Optional extracted keyframes | Semantic understanding of a reference |
-| Style Blueprint with `schemaVersion: "1.0"` | Automatic assembly into a final edit |
-| Optional Replicate job submission, status and generation helpers | Broader provider integrations |
+| Scene-cut detection and shot boundaries | Whisper-style transcription when a video has no captions |
+| Shot durations, pacing and aspect ratio | Automatic vision descriptions without Claude in the loop |
+| Page metadata, engagement and captions for URLs (yt-dlp) | Semantic understanding of a reference |
+| Browser observation and enrichment (`/video:watch`, `/video:enrich`) | Automatic assembly into a final edit |
+| Style Blueprint with `schemaVersion: "1.0"` | Broader provider integrations |
+| TikTok / Reels / Shorts prompt presets | |
+| Optional Replicate job submission, status and generation helpers | |
 
 Scene detection is a heuristic: fades, fast motion and similar shots can produce imperfect boundaries. Inspect the blueprint before using it. “UGC ads” describes a possible creative format, not a claim of authentic customer endorsement or proven ad results.
 
 Read the [architecture and Blueprint contract](docs/ARCHITECTURE.md) and [roadmap](docs/ROADMAP.md) for implementation details and planned work. The installed release is the source of truth for supported behavior.
+
+## How it compares
+
+| Project | What it does | How clipmimic differs |
+| --- | --- | --- |
+| [0xpratzyy/dissect](https://github.com/0xpratzyy/dissect) | Claude Code skill that reverse-engineers a video into a reusable blueprint | clipmimic adds platform presets, Replicate generation, a browser-observation flow and a plugin install; dissect is a focused analysis skill. Try both. |
+| [browser-use/video-use](https://github.com/browser-use/video-use) | Edits footage you already have | clipmimic plans new footage from a reference’s structure |
+| [MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo), [ShortGPT](https://github.com/RayVentura/ShortGPT) | Topic-to-video from stock clips | clipmimic starts from a specific reference’s pacing and hook, not a topic alone |
+| [reelmimic](https://github.com/edenfunf/reelmimic) | Analyzes a reference and makes a new 2D animation in a similar style | clipmimic is a Claude Code skill and does not render animation itself |
+
+Star counts and feature sets change; see [docs/COMPETITIVE.md](docs/COMPETITIVE.md) for sources and dates.
 
 ## FAQ
 

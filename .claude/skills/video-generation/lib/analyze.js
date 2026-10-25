@@ -2,10 +2,14 @@
  * Analyze a local video into a Style Blueprint using ffprobe/ffmpeg.
  */
 
-import { mkdir } from "node:fs/promises";
+import { mkdir, mkdtemp, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import { run as defaultRun } from "./tools.js";
 import { createBlueprint, computePacing } from "./blueprint.js";
+import { isUrl } from "./ingest.js";
+import { fetchMetadata } from "./metadata.js";
+import { fetchTranscript } from "./transcript.js";
 
 export function aspectLabel(w, h) {
   const r = w / h;
@@ -60,18 +64,66 @@ export async function extractKeyframes(file, shots, outDir, run = defaultRun) {
   return shots;
 }
 
-export async function analyze(file, { threshold, keyframesDir, source = file, run = defaultRun } = {}) {
+/** Text of cues that start before `endSec` (the spoken hook). */
+export function hookText(cues, endSec) {
+  return cues.filter((c) => c.startSec < endSec).map((c) => c.text).join(" ").replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Metadata/transcript are best-effort for URL sources: any failure becomes a
+ * short entry in `warnings` and never fails the analysis.
+ */
+export async function analyze(file, { threshold, keyframesDir, source = file, run = defaultRun, metadata = true, transcript = true } = {}) {
   const meta = await probe(file, run);
   const cuts = await detectScenes(file, { threshold, run });
   const shots = cutsToShots(cuts, meta.durationSec);
   if (keyframesDir) await extractKeyframes(file, shots, keyframesDir, run);
+
+  const hook = { text: "", endSec: Math.min(3, shots[0]?.endSec ?? 3) };
+  const audio = { hasSpeech: meta.hasAudio, transcript: "", music: "" };
+  const extra = {};
+  const warnings = [];
+  const short = (e) => String(e?.message ?? e).split("\n")[0].slice(0, 160);
+
+  if (isUrl(String(source))) {
+    if (metadata) {
+      try {
+        const m = await fetchMetadata(source, { run });
+        extra.metadata = m.metadata;
+        extra.engagement = m.engagement;
+      } catch (e) {
+        warnings.push(`metadata unavailable: ${short(e)}`);
+      }
+    }
+    if (transcript) {
+      let dir;
+      try {
+        dir = await mkdtemp(path.join(tmpdir(), "clipmimic-subs-"));
+        const t = await fetchTranscript(source, { run, dir });
+        if (t.text) {
+          audio.transcript = t.text;
+          audio.hasSpeech = true;
+          hook.text = hookText(t.cues, hook.endSec);
+        } else {
+          warnings.push("transcript unavailable: no captions found");
+        }
+      } catch (e) {
+        warnings.push(`transcript unavailable: ${short(e)}`);
+      } finally {
+        if (dir) await rm(dir, { recursive: true, force: true }).catch(() => {});
+      }
+    }
+  }
+  if (warnings.length) extra.warnings = warnings;
+
   return createBlueprint({
     source,
     durationSec: meta.durationSec,
     aspect: aspectLabel(meta.width, meta.height),
-    hook: { text: "", endSec: Math.min(3, shots[0]?.endSec ?? 3) },
+    hook,
     shots,
     pacing: computePacing(shots, meta.durationSec),
-    audio: { hasSpeech: meta.hasAudio, transcript: "", music: "" },
+    audio,
+    ...extra,
   });
 }
