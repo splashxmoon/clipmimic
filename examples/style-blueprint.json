@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "source": "https://example.com/reference.mp4",
+  "durationSec": 12,
+  "aspect": "9:16",
+  "hook": { "text": "Stop scrolling: this changes everything", "endSec": 2 },
+  "shots": [
+    { "index": 0, "startSec": 0, "endSec": 2, "description": "close-up product reveal, fast zoom" },
+    { "index": 1, "startSec": 2, "endSec": 7, "description": "handheld demo of the product in use" },
+    { "index": 2, "startSec": 7, "endSec": 12, "description": "logo and call to action on clean background" }
+  ],
+  "pacing": { "shotCount": 3, "avgShotSec": 4, "cutsPerMinute": 10 },
+  "captions": { "present": true, "style": "bold white, bottom third" },
+  "audio": { "hasSpeech": true, "transcript": "", "music": "upbeat" },
+  "cta": "Link in bio"
+}

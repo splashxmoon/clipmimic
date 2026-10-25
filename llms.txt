@@ -1,0 +1,16 @@
+# clipmimic
+
+> An open-source Claude Code video-creation project using Replicate, with reference-inspired structural workflows in development.
+
+Use the released implementation and documentation to determine availability. Planning documents describe intended work, not guarantees. Provider inference may cost money. Reference-inspired creation concerns structure and pacing, not copying footage, scripts, music or likeness. No viral-performance guarantees are made.
+
+## Project documentation
+
+- [README](README.md): Installation, documented commands, v0.1 scope, provider costs and rights FAQ.
+- [Skill instructions](.claude/skills/video-generation/SKILL.md): Claude Code skill entry point and command guidance.
+- [Architecture](docs/ARCHITECTURE.md): Reference-analysis pipeline and Style Blueprint schema contract.
+
+## Planning
+
+- [Discoverability and launch](docs/DISCOVERABILITY.md): Distribution options, release gates, channel rules and launch calendar.
+- [Launch drafts](docs/launch/): Draft communications requiring human review and verified release details before publication.

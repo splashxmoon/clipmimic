@@ -1,0 +1,8 @@
+{
+  "name": "video",
+  "version": "0.1.0",
+  "description": "Mimic high-performing reference videos and generate new video from Claude Code",
+  "author": { "name": "Arun Dass" },
+  "license": "MIT",
+  "keywords": ["video", "video-generation", "claude-code", "skill", "short-form"]
+}

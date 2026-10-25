@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">clipmimic</title>
+  <desc id="desc">Three offset film frames with a diagonal editing cut, in ink and amber.</desc>
+  <rect width="96" height="96" rx="18" fill="#222a25"/>
+  <path d="M17 28h30v42H17zM49 19h30v42H49z" fill="none" stroke="#f4f0e6" stroke-width="4"/>
+  <path d="M34 42h29v34H34z" fill="#e9a448" stroke="#222a25" stroke-width="4"/>
+  <path d="m42 49 13 10-13 10z" fill="#222a25"/>
+  <path d="M22 34h8m34-9h8M22 63h6m40-9h6" stroke="#f4f0e6" stroke-width="3"/>
+  <path d="m23 82 50-68" stroke="#e9a448" stroke-width="3"/>
+</svg>

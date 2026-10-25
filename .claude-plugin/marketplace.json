@@ -1,0 +1,14 @@
+{
+  "name": "video-generation-marketplace",
+  "owner": {
+    "name": "Arun Dass"
+  },
+  "plugins": [
+    {
+      "name": "video",
+      "source": "./",
+      "description": "Mimic reference videos and generate new ones"
+    }
+  ],
+  "description": "Mimic reference videos and generate new ones in Claude Code"
+}

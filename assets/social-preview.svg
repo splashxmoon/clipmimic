@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">clipmimic — Study the rhythm. Make something new.</title>
+  <desc id="desc">A 1280 by 640 social preview source, with an illustrated shot strip and the reference-to-blueprint-to-new-prompts workflow. Export to PNG and upload in GitHub Settings manually.</desc>
+  <rect width="1280" height="640" fill="#222a25"/>
+  <rect x="36" y="36" width="1208" height="568" fill="#f4f0e6"/>
+  <rect x="36" y="36" width="14" height="568" fill="#e9a448"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#222a25">
+    <text x="82" y="91" font-size="19" font-weight="700" letter-spacing="3">VIDEO GENERATION SKILL</text>
+    <text x="1198" y="91" text-anchor="end" font-size="16">OPEN SOURCE / CLAUDE CODE</text>
+    <text x="78" y="193" font-size="79" font-weight="700" letter-spacing="-3">Study the rhythm.</text>
+    <text x="78" y="277" font-size="79" font-weight="700" letter-spacing="-3">Make something new.</text>
+    <text x="82" y="324" font-size="24">Reference analysis. Shot prompts. Optional AI generation.</text>
+  </g>
+  <g stroke="#222a25" stroke-width="3">
+    <rect x="82" y="366" width="158" height="126" fill="#dddcd0"/>
+    <rect x="250" y="366" width="268" height="126" fill="#e9a448"/>
+    <rect x="528" y="366" width="115" height="126" fill="#a5b5a2"/>
+    <path d="m103 471 44-76 36 56 35-32M271 472l65-69 57 40 97-54M551 464h70m-35-74v74" fill="none"/>
+    <path d="M82 511h561m-561-7v14m158-14v14m278-14v14m125-14v14"/>
+    <path d="M674 426h43m-12-10 12 10-12 10" fill="none"/>
+    <rect x="752" y="366" width="446" height="151" fill="#222a25"/>
+  </g>
+  <g font-family="monospace" font-size="23">
+    <text x="778" y="403" fill="#e9a448">Style Blueprint / &quot;1.0&quot;</text>
+    <text x="778" y="447" fill="#f4f0e6">same pacing → new topic</text>
+    <text x="778" y="490" fill="#f4f0e6">prompts → optional Replicate</text>
+  </g>
+  <g fill="#222a25" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="1">
+    <text x="82" y="562">STRUCTURE &amp; STYLE, NOT COPIED FOOTAGE</text>
+    <text x="1198" y="562" text-anchor="end">FINAL EDIT: MANUAL</text>
+  </g>
+</svg>

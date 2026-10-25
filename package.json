@@ -1,0 +1,26 @@
+{
+  "name": "clipmimic",
+  "version": "0.1.0",
+  "description": "Open-source Claude Code skill to analyze reference videos into a Style Blueprint and mimic their structure for new topics, plus text/image→video via Replicate",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node --test",
+    "lint": "echo 'lint placeholder'"
+  },
+  "keywords": [
+    "claude-code",
+    "skill",
+    "video-generation",
+    "mimic",
+    "ai-video"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/splashxmoon/clipmimic.git"
+  },
+  "license": "MIT"
+}
