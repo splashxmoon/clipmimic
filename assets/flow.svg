@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 150" width="900" height="150" role="img" aria-labelledby="t">
+  <title id="t">Reference video to Style Blueprint to new shot prompts, optionally generated on Replicate, then manual editing</title>
+  <style>
+    .box{fill:#f6f8fa;stroke:#d0d7de;stroke-width:1.5}
+    .opt{fill:#fff;stroke:#8c959f;stroke-width:1.5;stroke-dasharray:5 4}
+    .h{font:600 14px -apple-system,Segoe UI,Helvetica,Arial,sans-serif;fill:#1f2328}
+    .s{font:12px -apple-system,Segoe UI,Helvetica,Arial,sans-serif;fill:#59636e}
+    .a{stroke:#59636e;stroke-width:1.5;fill:none}
+  </style>
+  <defs><marker id="m" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#59636e"/></marker></defs>
+  <rect class="box" x="10" y="35" width="150" height="80" rx="8"/>
+  <text class="h" x="85" y="68" text-anchor="middle">Reference video</text>
+  <text class="s" x="85" y="88" text-anchor="middle">file or supported URL</text>
+  <rect class="box" x="195" y="35" width="150" height="80" rx="8"/>
+  <text class="h" x="270" y="68" text-anchor="middle">Style Blueprint</text>
+  <text class="s" x="270" y="88" text-anchor="middle">schemaVersion 1.0</text>
+  <rect class="box" x="380" y="35" width="150" height="80" rx="8"/>
+  <text class="h" x="455" y="68" text-anchor="middle">New shot prompts</text>
+  <text class="s" x="455" y="88" text-anchor="middle">your topic, same timing</text>
+  <rect class="opt" x="565" y="35" width="150" height="80" rx="8"/>
+  <text class="h" x="640" y="68" text-anchor="middle">Replicate</text>
+  <text class="s" x="640" y="88" text-anchor="middle">optional --generate</text>
+  <rect class="box" x="750" y="35" width="140" height="80" rx="8"/>
+  <text class="h" x="820" y="68" text-anchor="middle">Manual edit</text>
+  <text class="s" x="820" y="88" text-anchor="middle">review and cut</text>
+  <path class="a" d="M160 75H193" marker-end="url(#m)"/>
+  <path class="a" d="M345 75H378" marker-end="url(#m)"/>
+  <path class="a" stroke-dasharray="5 4" d="M530 75H563" marker-end="url(#m)"/>
+  <path class="a" d="M715 75H748" marker-end="url(#m)"/>
+</svg>

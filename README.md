@@ -23,13 +23,7 @@ clipmimic is a Claude Code skill and plugin that turns a high-performing referen
 
 ## From reference to new shots
 
-```mermaid
-flowchart LR
-    A["Reference video<br/>rights-cleared file or supported URL"] --> B["Style Blueprint<br/>schemaVersion: &quot;1.0&quot;"]
-    B --> C["New shot prompts<br/>your topic + reference timing"]
-    C -. "optional --generate" .-> D["Replicate<br/>new shot generation"]
-    D --> E["Manual review and editing"]
-```
+![Reference video becomes a Style Blueprint, then new shot prompts, optionally generated on Replicate, then manual editing.](assets/flow.svg)
 
 The blueprint keeps the timing inspectable. It records scene-cut boundaries, shot durations, pacing and aspect ratio; for URLs it also records page metadata, engagement counts and the video’s own captions (hook text is taken from the first seconds of speech). Keyframe extraction is optional, and `/video:watch` can add hook type, shot descriptions, on-screen text and caption style. Mimic uses that structure to build prompts about your topic. It does not identify the reference’s meaning or recreate a completed edit.
 
