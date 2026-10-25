@@ -143,15 +143,8 @@ Not automatically. Mimic produces shot prompts and optionally submits generation
 **Will this reproduce a high-performing ad’s results?**  
 No. A reference’s pacing can inform an experiment; it does not transfer audience fit, distribution, creative quality or measured business results.
 
-## Help shape the next cut
-
-Useful contributions include clearer install instructions, reproducible analysis failures, model compatibility notes and rights-cleared examples. Start with [CONTRIBUTING.md](CONTRIBUTING.md). Include your Node/ffmpeg versions and a minimal example in bug reports; never include API tokens or private media.
-
-If the project is useful, a star helps others find it. Contributions and honest feedback matter more than the count.
-
-<!-- Replace owner/repo placeholders with the canonical public repository before launch. -->
-[![Star history — configure owner/repo before launch](https://api.star-history.com/svg?repos=%3Cowner%3E/%3Crepo%3E&type=Date)](https://star-history.com/#%3Cowner%3E/%3Crepo%3E&Date)
+[![Star history](https://api.star-history.com/svg?repos=splashxmoon/clipmimic&type=Date)](https://star-history.com/#splashxmoon/clipmimic&Date)
 
 Brand assets: [logo](assets/logo.svg), [banner](assets/banner.svg), [1280×640 social preview](assets/social-preview.svg). The preview is an SVG source: export a PNG/JPG under 1 MB and upload it in GitHub Settings → Social preview manually. Artwork illustrates the workflow; it is not generated output or a benchmark.
 
-[MIT License](LICENSE) · [Architecture](docs/ARCHITECTURE.md) · [Roadmap](docs/ROADMAP.md) · [Discoverability plan](docs/DISCOVERABILITY.md)
+[MIT License](LICENSE) · [Contributing](CONTRIBUTING.md) · [Architecture](docs/ARCHITECTURE.md) · [Roadmap](docs/ROADMAP.md) · [Discoverability plan](docs/DISCOVERABILITY.md)
