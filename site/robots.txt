@@ -1,0 +1,5 @@
+# Project Pages serves this file below /clipmimic/.
+# Crawlers use /robots.txt at the host root; this file is informational here.
+User-agent: *
+Allow: /
+Sitemap: https://splashxmoon.github.io/clipmimic/sitemap.xml

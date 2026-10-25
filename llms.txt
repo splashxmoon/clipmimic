@@ -6,9 +6,12 @@ Use the released implementation and documentation to determine availability. Pla
 
 ## Project documentation
 
+- [Landing site](https://splashxmoon.github.io/clipmimic/): Workflow, installation, platform use cases and visible FAQ; availability depends on Pages deployment.
 - [README](README.md): Installation, documented commands, v0.1 scope, provider costs and rights FAQ.
 - [Skill instructions](.claude/skills/video-generation/SKILL.md): Claude Code skill entry point and command guidance.
 - [Architecture](docs/ARCHITECTURE.md): Reference-analysis pipeline and Style Blueprint schema contract.
+- [SEO and hosting](docs/SEO.md): Pages deployment, search verification, structured data and measurement.
+- [Platform launch drafts](docs/launch/tiktok-instagram.md): TikTok, Instagram Reels and Shorts demo posts and disclosure checks.
 
 ## Planning
 

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ClipMimic — Claude Code Video Skill &amp; AI Generation</title>
+  <meta name="description" content="Analyze reference videos into Style Blueprints. Create new shot prompts and optionally generate AI video in Claude Code. Open source; paid rendering." />
+  <link rel="canonical" href="https://splashxmoon.github.io/clipmimic/" />
+  <meta name="theme-color" content="#222a25" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ClipMimic" />
+  <meta property="og:title" content="ClipMimic — Study the rhythm. Make something new." />
+  <meta property="og:description" content="Reference analysis, reusable Style Blueprints and new-shot prompts inside Claude Code. Optional paid AI generation; manual final edit." />
+  <meta property="og:url" content="https://splashxmoon.github.io/clipmimic/" />
+  <!-- SVG source fallback: export og.svg to og.png and update both image URLs/types before launch. See docs/SEO.md. -->
+  <meta property="og:image" content="https://splashxmoon.github.io/clipmimic/og.svg" />
+  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="640" />
+  <meta property="og:image:alt" content="ClipMimic workflow: reference timing becomes a Style Blueprint and prompts for new shots." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ClipMimic — Claude Code video skill" />
+  <meta name="twitter:description" content="Learn from a reference’s pacing. Plan original shots. Optionally render with Replicate." />
+  <meta name="twitter:image" content="https://splashxmoon.github.io/clipmimic/og.svg" />
+  <meta name="twitter:image:alt" content="Reference video to Style Blueprint to new-shot prompts." />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://splashxmoon.github.io/clipmimic/#source","name":"ClipMimic","codeRepository":"https://github.com/splashxmoon/clipmimic","url":"https://splashxmoon.github.io/clipmimic/","programmingLanguage":"JavaScript","license":"https://opensource.org/license/mit","description":"An open-source Claude Code skill for reference-video structure analysis, Style Blueprints and per-shot prompts, with optional Replicate generation."},{"@type":"SoftwareApplication","@id":"https://splashxmoon.github.io/clipmimic/#application","name":"ClipMimic","url":"https://splashxmoon.github.io/clipmimic/","applicationCategory":"DeveloperApplication","operatingSystem":"Systems supporting Node.js 18+, Claude Code and the required command-line tools","license":"https://opensource.org/license/mit","softwareRequirements":"Node.js 18+, Claude Code; ffmpeg and ffprobe for analysis; yt-dlp for URL inputs. Replicate account and token for paid generation.","description":"Local reference analysis and shot-prompt planning, with optional paid AI video generation. Final editing is manual."}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can ClipMimic mimic viral videos or make a UGC ad clone?","acceptedAnswer":{"@type":"Answer","text":"ClipMimic can reuse a reference’s timing and structural cues to plan new shots. It does not copy footage, scripts, music or likeness, and it cannot guarantee identical visuals, virality or ad performance."}},{"@type":"Question","name":"Which reference videos can I use?","acceptedAnswer":{"@type":"Answer","text":"Use footage you own or have permission to access and use for your purpose. Follow platform terms and relevant rights. A public URL is not a license; do not bypass private accounts, DRM or access restrictions."}},{"@type":"Question","name":"Is AI video generation free?","acceptedAnswer":{"@type":"Answer","text":"The JavaScript code is MIT licensed. Local analysis and prompt-only mimic do not call Replicate. Replicate rendering is paid and each shot or retry can add costs. Claude Code may have separate costs. No free inference credits are included."}},{"@type":"Question","name":"What is a Style Blueprint?","acceptedAnswer":{"@type":"Answer","text":"A Style Blueprint is JSON with schemaVersion \"1.0\" that records shot boundaries, durations, pacing and aspect ratio, with optional keyframes. It is structural analysis, not a transcript or a vision-generated scene description."}},{"@type":"Question","name":"Does it export finished TikToks, Reels or Shorts?","acceptedAnswer":{"@type":"Answer","text":"No. ClipMimic produces per-shot prompts and can optionally submit individual Replicate jobs. Review the outputs, set the final aspect ratio, assemble clips, add audio or captions and apply platform disclosures yourself."}}]}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead wrap">
+    <a class="wordmark" href="./" aria-label="ClipMimic home"><img src="logo.svg" alt="" width="36" height="36" />clipmimic<span class="version">v0.1</span></a>
+    <nav aria-label="Main navigation"><a href="#workflow">Workflow</a><a href="#install">Install</a><a href="#faq">FAQ</a><a href="https://github.com/splashxmoon/clipmimic">GitHub ↗</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <p class="eyebrow">Open-source / Claude Code video skill</p>
+      <h1 id="hero-title">Study the rhythm.<br /><span>Make something new.</span></h1>
+      <div class="hero-bottom"><p>Reference video analysis meets AI video generation. Turn shot timing into a Style Blueprint, then plan original shots for your next topic. All inside Claude Code.</p><a class="button" href="#install">Start with a reference <span aria-hidden="true">↘</span></a></div>
+      <div class="facts"><span>MIT licensed</span><span>Node.js 18+</span><span>Local prompt planning</span><span>Optional paid rendering</span></div>
+    </section>
+    <figure class="timeline wrap" aria-label="Illustrated reference timing becomes prompts for a new topic">
+      <div class="timeline-top"><span>Reference rhythm</span><span>New subject, same starting structure</span></div>
+      <div class="shot-strip" aria-hidden="true"><div class="shot one"><span>01</span><svg viewBox="0 0 100 90"><path d="M15 75 48 15 82 75Z" /></svg></div><div class="shot two"><span>02</span><svg viewBox="0 0 180 90"><path d="m15 75 48-52 35 27 65-35" /></svg></div><div class="shot three"><span>03</span><svg viewBox="0 0 90 90"><path d="M15 67h60M45 15v52" /></svg></div><div class="shot four"><span>04</span><svg viewBox="0 0 130 90"><circle cx="65" cy="45" r="28" /><path d="m57 32 20 13-20 13Z" /></svg></div></div>
+      <figcaption>Illustrated shot strip, not generated footage. Timing guides a new idea; final editing stays in your hands.</figcaption>
+    </figure>
+    <section id="workflow" class="section wrap" aria-labelledby="workflow-title">
+      <div class="section-heading"><p class="eyebrow">01 / Inspect the creative structure</p><h2 id="workflow-title">Reference video analysis.<br />A blueprint you can read.</h2></div>
+      <ol class="workflow"><li><span class="step">01</span><h3>Analyze a reference</h3><p>Start with a rights-cleared file or supported URL. Detect scene cuts, shot durations, pacing and aspect. Optionally extract keyframes.</p></li><li><span class="step">02</span><h3>Inspect the Style Blueprint</h3><p>Keep the structure in versioned JSON with <code>schemaVersion: "1.0"</code>. Review the boundaries: scene detection is a heuristic.</p></li><li><span class="step">03</span><h3>Write a new topic</h3><p>Mimic turns the blueprint and your topic into per-shot prompts. Add brand or style cues. Prompt planning makes no Replicate calls.</p></li><li><span class="step">04</span><h3>Optionally generate</h3><p>Add <code>--generate</code> to submit paid Replicate jobs. Check each job, select the outputs and assemble your final edit manually.</p></li></ol>
+      <div class="blueprint"><div><p class="eyebrow">The hand-off</p><h3>Structure, made portable.</h3><p>A blueprint is a starting point for your creative decisions. It does not understand a scene’s meaning or recreate the reference’s content.</p><a href="https://github.com/splashxmoon/clipmimic/blob/main/docs/ARCHITECTURE.md">Read the Blueprint contract ↗</a></div><pre aria-label="Illustrative Blueprint excerpt"><code>{
+  "schemaVersion": "1.0",
+  "aspect": "9:16",
+  "shots": [
+    { "index": 0, "startSec": 0,
+      "endSec": 2, "durationSec": 2 }
+  ]
+}</code></pre></div>
+      <p class="small">Illustrative excerpt, not a complete blueprint or measured result. Source aspect and timing inform prompts; they do not guarantee generated dimensions or duration.</p>
+    </section>
+    <section id="platforms" class="platform-section">
+      <div class="wrap section"><p class="eyebrow">02 / Short-form, with intention</p><h2>TikTok, Instagram Reels<br />and YouTube Shorts.</h2><div class="platform-copy"><p>Use rights-cleared references from short-form platforms to study cut rhythm and plan original product demos, explainers or UGC-style ads. A 9:16 reference provides a vertical starting point; check your final export yourself.</p><p>Want to mimic viral videos? Reuse a structural idea and test your own creative. A “UGC ad clone” is not a promise to copy footage or transfer performance. ClipMimic does not invent genuine customer endorsements, publish posts or label uploads for you.</p></div><p class="platform-note">Review generated footage and audio, apply each platform’s required AI disclosures, and handle music, likeness and sponsorship permissions separately. <a href="https://github.com/splashxmoon/clipmimic/blob/main/docs/launch/tiktok-instagram.md">Platform demo and posting checklist ↗</a></p></div>
+    </section>
+    <section id="install" class="section wrap" aria-labelledby="install-title">
+      <div class="section-heading"><p class="eyebrow">03 / Start local, render when ready</p><h2 id="install-title">Install the Claude Code skill.</h2><p>Node.js 18+ and Claude Code. Analysis needs ffmpeg and ffprobe; URLs also need yt-dlp. No npm dependencies to install. Replicate rendering requires an account and token and costs money.</p></div>
+      <div class="install-options"><article><h3>Plugin installation</h3><pre><code>/plugin marketplace add splashxmoon/clipmimic
+/plugin install video@video-generation-marketplace</code></pre><p class="small">The plugin is named <code>video</code>. Installation was tested locally; the GitHub route requires repository access while the source is private. Keep the full plugin checkout, including its skill link.</p></article><article><h3>Project-copy installation</h3><p>From a repository checkout, copy both the skill and slash-command wrappers into your project:</p><pre><code>mkdir -p /path/to/project/.claude/skills
+cp -R .claude/skills/video-generation /path/to/project/.claude/skills/
+cp -R .claude/commands /path/to/project/.claude/</code></pre><p class="small">Keep scripts and libraries together. Wrappers use project-relative paths; this copy recipe is for a project, not <code>~/.claude</code>. Merge carefully if your project already has commands.</p></article></div>
+      <div class="first-run"><div><h3>Analyze. Inspect. Plan.</h3><p>Start without provider charges. To save keyframes, add <code>--keyframes frames</code> to analysis.</p></div><pre><code>/video:analyze ref.mp4 --out blueprint.json
+/video:mimic blueprint.json --topic "A refillable water bottle launch"</code></pre></div>
+      <details><summary>Optional paid AI video generation</summary><p>Set the token in the environment used by Claude Code. Never commit it. Check your chosen model’s current inputs and pricing, and count the shots before submitting.</p><pre><code>export REPLICATE_API_TOKEN="your-token-here"</code></pre><pre><code>/video:mimic blueprint.json --topic "A refillable water bottle launch" --generate
+/video:status &lt;job-id&gt;</code></pre><p><code>--generate</code> submits a job per shot and prints IDs; it does not assemble an edit. Model availability varies. Prompts request timing and aspect, but generation settings and outputs require your review.</p></details>
+      <p class="small">Need direct Node commands or troubleshooting? See the <a href="https://github.com/splashxmoon/clipmimic#quickstart">full README quickstart</a>. The skills CLI route is not yet a verified public installation.</p>
+    </section>
+    <section class="section wrap scope" aria-labelledby="scope-title"><div><p class="eyebrow">04 / Honest v0.1 scope</p><h2 id="scope-title">A shot-planning workflow.<br />You make the final cut.</h2></div><div class="scope-columns"><div><h3>In v0.1</h3><ul><li>Scene cuts, shots, durations, pacing and aspect</li><li>Optional extracted keyframes</li><li>Style Blueprint and new-topic shot prompts</li><li>Optional Replicate generation and status helpers</li><li>Text-to-video, image-to-video and model listing</li></ul></div><div><h3>On the roadmap</h3><ul><li>Transcript and hook-text extraction</li><li>Vision-based scene descriptions</li><li>Automatic final-video assembly</li></ul><p>No promise of identical visuals or marketing results.</p><a href="https://github.com/splashxmoon/clipmimic/blob/main/docs/ROADMAP.md">Follow the roadmap ↗</a></div></div></section>
+    <section id="faq" class="section wrap" aria-labelledby="faq-title"><div class="section-heading"><p class="eyebrow">05 / Before your first cut</p><h2 id="faq-title">A few useful answers.</h2></div>
+      <div class="faq"><details open="open"><summary>Can ClipMimic mimic viral videos or make a UGC ad clone?</summary><p>ClipMimic can reuse a reference’s timing and structural cues to plan new shots. It does not copy footage, scripts, music or likeness, and it cannot guarantee identical visuals, virality or ad performance.</p></details><details open="open"><summary>Which reference videos can I use?</summary><p>Use footage you own or have permission to access and use for your purpose. Follow platform terms and relevant rights. A public URL is not a license; do not bypass private accounts, DRM or access restrictions.</p></details><details open="open"><summary>Is AI video generation free?</summary><p>The JavaScript code is MIT licensed. Local analysis and prompt-only mimic do not call Replicate. Replicate rendering is paid and each shot or retry can add costs. Claude Code may have separate costs. No free inference credits are included.</p></details><details open="open"><summary>What is a Style Blueprint?</summary><p>A Style Blueprint is JSON with schemaVersion "1.0" that records shot boundaries, durations, pacing and aspect ratio, with optional keyframes. It is structural analysis, not a transcript or a vision-generated scene description.</p></details><details open="open"><summary>Does it export finished TikToks, Reels or Shorts?</summary><p>No. ClipMimic produces per-shot prompts and can optionally submit individual Replicate jobs. Review the outputs, set the final aspect ratio, assemble clips, add audio or captions and apply platform disclosures yourself.</p></details></div>
+    </section>
+    <section class="endnote wrap"><p class="eyebrow">Your topic. Your footage. Your final cut.</p><h2>Build the next example.</h2><p>Bring a rights-cleared reference, a new idea and a willingness to inspect the details.</p><a class="button" href="https://github.com/splashxmoon/clipmimic">Explore the repository ↗</a></section>
+  </main>
+  <footer class="wrap"><a class="wordmark" href="./">clipmimic</a><p>Open-source JavaScript · MIT · Paid provider inference</p><nav aria-label="Resources"><a href="https://github.com/splashxmoon/clipmimic/blob/main/LICENSE">License</a><a href="https://github.com/splashxmoon/clipmimic/blob/main/CONTRIBUTING.md">Contribute</a><a href="https://github.com/splashxmoon/clipmimic/blob/main/docs/SEO.md">Site notes</a><a href="llms.txt">Agent docs</a></nav></footer>
+</body>
+</html>

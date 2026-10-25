@@ -1,0 +1,15 @@
+# ClipMimic
+
+> An MIT-licensed JavaScript Claude Code skill for reference-video structure analysis and new-topic shot prompts, with optional paid Replicate generation.
+
+Final editing is manual. Structural inspiration does not grant rights to reference footage, scripts, music or likeness. No virality or marketing results are guaranteed. Consult the installed release for supported behavior.
+
+## Documentation
+
+- [Landing page](https://splashxmoon.github.io/clipmimic/): Workflow, installation, v0.1 limits and FAQ.
+- [README](https://github.com/splashxmoon/clipmimic/blob/main/README.md): Command instructions and requirements.
+- [Skill instructions](https://github.com/splashxmoon/clipmimic/blob/main/.claude/skills/video-generation/SKILL.md): Skill entry point.
+- [Architecture](https://github.com/splashxmoon/clipmimic/blob/main/docs/ARCHITECTURE.md): Style Blueprint schemaVersion "1.0" and pipeline.
+- [Roadmap](https://github.com/splashxmoon/clipmimic/blob/main/docs/ROADMAP.md): Planned capabilities.
+- [SEO notes](https://github.com/splashxmoon/clipmimic/blob/main/docs/SEO.md): Hosting, search verification and measurement.
+- [Platform launch drafts](https://github.com/splashxmoon/clipmimic/blob/main/docs/launch/tiktok-instagram.md): TikTok, Reels and Shorts demo/disclosure checklist.
