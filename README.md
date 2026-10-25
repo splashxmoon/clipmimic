@@ -37,14 +37,14 @@ The blueprint keeps the timing inspectable. It records scene-cut boundaries, sho
 
 **Requirements:** Claude Code for the skill workflow; Node.js **18+** for scripts; **ffmpeg + ffprobe** for analysis; **yt-dlp** for supported URL inputs. Local analysis and prompt planning do not call Replicate. Rendering requires a Replicate account and API token and **costs money**. Claude Code access has its own terms/costs.
 
-### Plugin install (tested locally)
+### Plugin install
 
 ```text
 /plugin marketplace add splashxmoon/clipmimic
 /plugin install video@video-generation-marketplace
 ```
 
-The plugin is named `video`, so commands appear as `/video:analyze`, `/video:mimic` and so on. Tested with a local checkout in an isolated config; a public GitHub install has not been tested yet.
+The plugin is named `video`, so commands appear as `/video:analyze`, `/video:mimic` and so on.
 
 ### 1. Install the skill files
 
