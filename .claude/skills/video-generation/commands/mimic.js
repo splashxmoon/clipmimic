@@ -1,10 +1,10 @@
 /**
- * /video:mimic
+ * /clipmimic:mimic
  * Turn a Style Blueprint plus a new topic into per-shot generation prompts,
  * optionally submitting each shot to Replicate.
  *
  * Usage (from Claude Code):
- *   /video:mimic <blueprint.json> --topic "..." [--brand "..."] [--style "..."] [--platform tiktok|reels|shorts] [--json] [--generate]
+ *   /clipmimic:mimic <blueprint.json> --topic "..." [--brand "..."] [--style "..."] [--platform tiktok|reels|shorts] [--json] [--generate]
  *
  * Without --generate it only prints the shot prompts (free, no API calls).
  */
@@ -35,7 +35,7 @@ function parseArgs(argv) {
 
 async function main() {
   const o = parseArgs(process.argv.slice(2));
-  if (!o.file) throw new Error('Usage: /video:mimic <blueprint.json> --topic "..." [--generate]');
+  if (!o.file) throw new Error('Usage: /clipmimic:mimic <blueprint.json> --topic "..." [--generate]');
   const bp = JSON.parse(await readFile(o.file, "utf8"));
   const plan = planMimic(bp, o);
   const { shots } = plan;
@@ -56,7 +56,7 @@ async function main() {
   const client = new ReplicateClient();
   for (const s of shots) {
     const p = await client.createPrediction(model, { prompt: s.prompt });
-    console.log(`Shot ${s.index}: job ${p.id} started (check with /video:status ${p.id})`);
+    console.log(`Shot ${s.index}: job ${p.id} started (check with /clipmimic:status ${p.id})`);
   }
 }
 

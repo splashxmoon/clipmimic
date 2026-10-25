@@ -1,6 +1,6 @@
 /**
  * Style Blueprint: a structured description of a reference video's style
- * (hook, shots, pacing, captions, audio, CTA) that /video:mimic adapts to a new topic.
+ * (hook, shots, pacing, captions, audio, CTA) that /clipmimic:mimic adapts to a new topic.
  */
 
 export const BLUEPRINT_VERSION = "1.0";

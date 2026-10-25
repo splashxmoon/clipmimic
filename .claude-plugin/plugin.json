@@ -1,5 +1,5 @@
 {
-  "name": "video",
+  "name": "clipmimic",
   "version": "0.1.0",
   "description": "Mimic high-performing TikTok, Reels and Shorts references: analyze or watch a video, build a Style Blueprint, plan new shots, optionally generate with Replicate",
   "author": {
@@ -7,6 +7,7 @@
   },
   "license": "MIT",
   "keywords": [
+    "clipmimic",
     "video",
     "video-generation",
     "claude-code",

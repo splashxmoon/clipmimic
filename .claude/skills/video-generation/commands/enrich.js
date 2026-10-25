@@ -1,11 +1,11 @@
 /**
- * /video:enrich
+ * /clipmimic:enrich
  * Merge observations (what Claude saw watching the reference in the browser, or in
  * its keyframes) into a Style Blueprint. Creates the blueprint if it doesn't exist
  * and the observations include durationSec and shots with startSec/endSec.
  *
  * Usage (from Claude Code):
- *   /video:enrich <blueprint.json> <observations.json> [--out blueprint.json]
+ *   /clipmimic:enrich <blueprint.json> <observations.json> [--out blueprint.json]
  */
 
 import { existsSync } from "node:fs";
@@ -26,7 +26,7 @@ function parseArgs(argv) {
 
 async function main() {
   const { files, out } = parseArgs(process.argv.slice(2));
-  if (files.length !== 2) throw new Error("Usage: /video:enrich <blueprint.json> <observations.json> [--out file]");
+  if (files.length !== 2) throw new Error("Usage: /clipmimic:enrich <blueprint.json> <observations.json> [--out file]");
   const [bpPath, obsPath] = files;
   const obs = JSON.parse(await readFile(obsPath, "utf8"));
   const existing = existsSync(bpPath) ? JSON.parse(await readFile(bpPath, "utf8")) : null;

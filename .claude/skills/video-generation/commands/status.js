@@ -1,9 +1,9 @@
 /**
- * /video:status <job-id>
+ * /clipmimic:status <job-id>
  * Check the status of a video generation job.
  *
  * Usage (from Claude Code):
- *   /video:status <prediction-id>
+ *   /clipmimic:status <prediction-id>
  *
  * Environment:
  *   REPLICATE_API_TOKEN  - required
@@ -15,7 +15,7 @@ import { summarizePrediction } from "../lib/index.js";
 async function main() {
   const id = process.argv.slice(2).join(" ").trim();
   if (!id) {
-    console.error("Usage: /video:status <prediction-id>");
+    console.error("Usage: /clipmimic:status <prediction-id>");
     process.exit(1);
   }
 

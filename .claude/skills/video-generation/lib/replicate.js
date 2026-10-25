@@ -116,7 +116,7 @@ export class ReplicateClient {
 
     throw new Error(
       `Prediction ${id} is still running after ${Math.round((maxAttempts * intervalMs) / 60000)} minutes. ` +
-        `It may still finish: check it with /video:status ${id}. ` +
+        `It may still finish: check it with /clipmimic:status ${id}. ` +
         `Raise the wait with VIDEO_POLL_MAX_MINUTES.`
     );
   }

@@ -1,15 +1,22 @@
-# ClipMimic
+# clipmimic
 
-> An MIT-licensed JavaScript Claude Code skill for reference-video structure analysis and new-topic shot prompts, with optional paid Replicate generation.
+> clipmimic is an MIT-licensed Claude Code skill and plugin. It studies a TikTok, Instagram Reel, YouTube Short or local video (shots, hook, pacing, captions, call to action), saves that as a Style Blueprint JSON file, and writes new per-shot prompts for your own topic. Generating clips through Replicate is optional and paid.
 
-Final editing is manual. Structural inspiration does not grant rights to reference footage, scripts, music or likeness. No virality or marketing results are guaranteed. Consult the installed release for supported behavior.
+What works in v0.1: scene cuts, shot lengths, pacing and aspect via ffmpeg; title, hashtags, engagement and captions for URLs via yt-dlp; browser observation with the Claude in Chrome extension; platform presets for TikTok, Reels and Shorts; Replicate submit, status and model listing. Not built yet: transcription for videos without captions, automatic shot descriptions without Claude, assembling clips into a finished edit, providers other than Replicate.
 
-## Documentation
+clipmimic copies structure and style, not footage. It grants no rights to a reference's footage, script, music or people.
 
-- [Landing page](https://splashxmoon.github.io/clipmimic/): Workflow, installation, v0.1 limits and FAQ.
-- [README](https://github.com/splashxmoon/clipmimic/blob/main/README.md): Command instructions and requirements.
-- [Skill instructions](https://github.com/splashxmoon/clipmimic/blob/main/.claude/skills/video-generation/SKILL.md): Skill entry point.
-- [Architecture](https://github.com/splashxmoon/clipmimic/blob/main/docs/ARCHITECTURE.md): Style Blueprint schemaVersion "1.0" and pipeline.
-- [Roadmap](https://github.com/splashxmoon/clipmimic/blob/main/docs/ROADMAP.md): Planned capabilities.
-- [SEO notes](https://github.com/splashxmoon/clipmimic/blob/main/docs/SEO.md): Hosting, search verification and measurement.
-- [Platform launch drafts](https://github.com/splashxmoon/clipmimic/blob/main/docs/launch/tiktok-instagram.md): TikTok, Reels and Shorts demo/disclosure checklist.
+## Install
+
+- `/plugin marketplace add splashxmoon/clipmimic`, then `/plugin install clipmimic@clipmimic`. Commands appear as `/clipmimic:analyze`, `/clipmimic:mimic` and so on.
+- Requires Node.js 18+ and ffmpeg (with ffprobe); URL references also need yt-dlp.
+
+## Docs
+
+- [Landing page](https://splashxmoon.github.io/clipmimic/): Workflow, install and FAQ.
+- [README](https://github.com/splashxmoon/clipmimic/blob/main/README.md): Install, commands, platform presets, status and FAQ.
+- [Skill instructions](https://github.com/splashxmoon/clipmimic/blob/main/.claude/skills/video-generation/SKILL.md): Skill entry point and command reference.
+- [Architecture](https://github.com/splashxmoon/clipmimic/blob/main/docs/ARCHITECTURE.md): Pipeline and Style Blueprint schema (`schemaVersion: "1.0"`).
+- [Example blueprint](https://github.com/splashxmoon/clipmimic/blob/main/examples/style-blueprint.json): A complete Style Blueprint.
+- [Roadmap](https://github.com/splashxmoon/clipmimic/blob/main/docs/ROADMAP.md): Planned work, not shipped features.
+- [Contributing](https://github.com/splashxmoon/clipmimic/blob/main/CONTRIBUTING.md) and [Security](https://github.com/splashxmoon/clipmimic/blob/main/SECURITY.md).

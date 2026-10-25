@@ -1,5 +1,5 @@
 /**
- * Short-form platform presets used by /video:mimic --platform.
+ * Short-form platform presets used by /clipmimic:mimic --platform.
  * Values are approximate public guidelines and change over time: treat them as
  * defaults to check against the platform's current documentation.
  */

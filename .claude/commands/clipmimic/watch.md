@@ -8,7 +8,7 @@ Study the reference video at the URL in `$ARGUMENTS` the way an editor would, th
 ## 0. Pick the route
 
 - If browser tools from the **Claude in Chrome** extension are available (tab/navigate, read page, screenshot, run JavaScript), use them for steps 1-4.
-- If they are not, say so, tell the user to install and enable the extension (or paste frames), and fall back to `/video:analyze <url>` which needs `yt-dlp` and `ffmpeg`.
+- If they are not, say so, tell the user to install and enable the extension (or paste frames), and fall back to `/clipmimic:analyze <url>` which needs `yt-dlp` and `ffmpeg`.
 
 ## 1. Open the page and collect page facts
 Navigate to the URL in a tab the user can see. Read the page text and record: platform, title/caption, creator, hashtags, posted date, and engagement (views, likes, comments, shares) exactly as displayed. Skim the top comments for what the audience reacted to (quote sparingly).
@@ -39,7 +39,7 @@ Use only what you actually saw; leave a field out rather than guessing. Then run
 
 `node .claude/skills/video-generation/commands/enrich.js blueprint.json observations.json`
 
-(This is the project-installed skill; plugin installs use ${CLAUDE_PLUGIN_ROOT}/skills/video-generation/commands/enrich.js.) If `blueprint.json` already exists from `/video:analyze`, shots are matched by index and enriched; otherwise it is built from your observations.
+(This is the project-installed skill; plugin installs use ${CLAUDE_PLUGIN_ROOT}/skills/video-generation/commands/enrich.js.) If `blueprint.json` already exists from `/clipmimic:analyze`, shots are matched by index and enriched; otherwise it is built from your observations.
 
 ## 5. Report
-Summarize the blueprint: what makes the hook work, pacing (avg shot length, cuts per minute), caption style, CTA. Suggest the next command: `/video:mimic blueprint.json --topic "..." --platform tiktok|reels|shorts`.
+Summarize the blueprint: what makes the hook work, pacing (avg shot length, cuts per minute), caption style, CTA. Suggest the next command: `/clipmimic:mimic blueprint.json --topic "..." --platform tiktok|reels|shorts`.

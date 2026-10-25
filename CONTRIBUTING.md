@@ -53,7 +53,7 @@ Breaking this causes `npm test` to fail at import time with a confusing module e
 
 ### Command registration
 
-Every script in `commands/` **must** be declared in `SKILL.md`. Claude Code reads `SKILL.md` to expose slash commands (`/video:generate`, `/video:generate-image`, `/video:status`, `/video:models`). An undeclared script will never be invoked.
+Every script in `commands/` **must** be declared in `SKILL.md`. Claude Code reads `SKILL.md` to expose slash commands (`/clipmimic:generate`, `/clipmimic:generate-image`, `/clipmimic:status`, `/clipmimic:models`). An undeclared script will never be invoked.
 
 ### Helper logic
 

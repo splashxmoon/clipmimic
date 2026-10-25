@@ -1,11 +1,11 @@
 {
-  "name": "video-generation-marketplace",
+  "name": "clipmimic",
   "owner": {
     "name": "Arun Dass"
   },
   "plugins": [
     {
-      "name": "video",
+      "name": "clipmimic",
       "source": "./",
       "description": "Mimic TikTok, Reels and Shorts references and generate new shots in Claude Code",
       "keywords": [

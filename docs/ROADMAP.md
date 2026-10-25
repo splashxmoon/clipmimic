@@ -10,7 +10,7 @@ Milestones for the open-source Claude Code skill that turns a reference short in
 
 **Deliverables**
 
-- [x] Skill layout with `SKILL.md` declaring `/video:analyze`, `/video:mimic`, plus `/video:generate`, `/video:generate-image`, `/video:status`, `/video:models`
+- [x] Skill layout with `SKILL.md` declaring `/clipmimic:analyze`, `/clipmimic:mimic`, plus `/clipmimic:generate`, `/clipmimic:generate-image`, `/clipmimic:status`, `/clipmimic:models`
 - [x] Analyze path: ffmpeg/ffprobe metadata, scene/shot cuts, keyframes → Blueprint JSON
 - [x] Mimic path: blueprint + `--topic` / `--brand` → per-shot prompts (optional `--generate`)
 - [x] Style Blueprint `schemaVersion: "1.0"` fields: `source`, `durationSec`, `aspect`, `hook`, `shots[]`, `pacing`, `captions`, `audio`, `cta` (reconcile in `lib/blueprint.js` if worktrees overlapped)
@@ -19,7 +19,7 @@ Milestones for the open-source Claude Code skill that turns a reference short in
 - [ ] Fixture tests for blueprint validate + mimic prompts (no live API in PR CI)
 - [ ] Docs linked from README; legal/ethics summary; **tagged-release verification** before “available” claims
 
-**Exit criteria:** `/video:analyze` writes valid Blueprint; `/video:mimic` prints prompts; `npm test` green; generate/status/models still work; tag only after maintainer verification.
+**Exit criteria:** `/clipmimic:analyze` writes valid Blueprint; `/clipmimic:mimic` prints prompts; `npm test` green; generate/status/models still work; tag only after maintainer verification.
 
 ## v0.2 — Enrich + generate loop + assemble
 

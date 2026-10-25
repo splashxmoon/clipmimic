@@ -1,9 +1,9 @@
 /**
- * /video:analyze
+ * /clipmimic:analyze
  * Analyze a reference video (URL or file) into a Style Blueprint JSON.
  *
  * Usage (from Claude Code):
- *   /video:analyze <url|file> [--out blueprint.json] [--keyframes dir] [--no-metadata] [--no-transcript] [--dry-run]
+ *   /clipmimic:analyze <url|file> [--out blueprint.json] [--keyframes dir] [--no-metadata] [--no-transcript] [--dry-run]
  *
  * Requires: ffmpeg + ffprobe; yt-dlp for URLs. Only analyze videos you have the rights to use.
  */

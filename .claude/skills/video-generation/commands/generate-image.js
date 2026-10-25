@@ -1,9 +1,9 @@
 /**
- * /video:generate-image
+ * /clipmimic:generate-image
  * Create a video from an image + text prompt using a Replicate image->video model.
  *
  * Usage (from Claude Code):
- *   /video:generate-image <image-url-or-path> <prompt>
+ *   /clipmimic:generate-image <image-url-or-path> <prompt>
  *
  * Environment:
  *   REPLICATE_API_TOKEN  - required
@@ -23,7 +23,7 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.length < 2) {
     console.error(
-      "Usage: /video:generate-image <image-url-or-path> <prompt>"
+      "Usage: /clipmimic:generate-image <image-url-or-path> <prompt>"
     );
     process.exit(1);
   }

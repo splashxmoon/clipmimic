@@ -9,8 +9,8 @@ Runtime: **Node.js ESM**. Generation centers on **Replicate** (provider-abstract
 | Stage | v0.1 release scope | Notes |
 |-------|--------------------|-------|
 | **Ingest** | Yes | Local file; URL via `yt-dlp` where available |
-| **Analyze → Blueprint** | Yes | `/video:analyze` writes Style Blueprint JSON |
-| **Mimic (adapt → prompts)** | Yes | `/video:mimic` emits per-shot prompts from blueprint + topic/brand |
+| **Analyze → Blueprint** | Yes | `/clipmimic:analyze` writes Style Blueprint JSON |
+| **Mimic (adapt → prompts)** | Yes | `/clipmimic:mimic` emits per-shot prompts from blueprint + topic/brand |
 | **Optional per-prompt generate** | Partial | Mimic may pass prompts to Replicate (`--generate`); not a full stitch |
 | **Assemble final MP4** | No — v0.2+ | ffmpeg concat + captions + audio bed |
 | **Rich transcript / vision text** | Schema present; values sparse until v0.2+ | `hook.text`, `captions.style`, `audio.transcript`, rich `shots[].description` filled when Whisper/vision land |
@@ -145,7 +145,7 @@ Canonical artifact between analyze and mimic/generate. Version field: **`schemaV
 }
 ```
 
-**Optional additive fields (URL references only; schemaVersion stays `"1.0"`).** `/video:analyze` adds these when the source is a URL. Consumers must treat them as absent-tolerant. Skip with `--no-metadata` / `--no-transcript`.
+**Optional additive fields (URL references only; schemaVersion stays `"1.0"`).** `/clipmimic:analyze` adds these when the source is a URL. Consumers must treat them as absent-tolerant. Skip with `--no-metadata` / `--no-transcript`.
 
 ```json
 {
@@ -182,12 +182,12 @@ Declare each script under `commands/` in `SKILL.md`. Helpers live in `lib/`, not
 
 | Command | Responsibility | Scope |
 |---------|----------------|-------|
-| `/video:analyze <url\|path>` | Ingest + analyze → write Style Blueprint JSON | **v0.1** |
-| `/video:mimic <blueprint> --topic … [--brand …] [--generate]` | Adapt → per-shot prompts; optional provider submit | **v0.1** (assemble later) |
-| `/video:generate <prompt>` | One-off text→video | Existing |
-| `/video:generate-image` | Image→video helper | Existing |
-| `/video:status <job-id>` | Poll a provider prediction / local job | Existing |
-| `/video:models` | List generation models via active provider | Existing |
+| `/clipmimic:analyze <url\|path>` | Ingest + analyze → write Style Blueprint JSON | **v0.1** |
+| `/clipmimic:mimic <blueprint> --topic … [--brand …] [--generate]` | Adapt → per-shot prompts; optional provider submit | **v0.1** (assemble later) |
+| `/clipmimic:generate <prompt>` | One-off text→video | Existing |
+| `/clipmimic:generate-image` | Image→video helper | Existing |
+| `/clipmimic:status <job-id>` | Poll a provider prediction / local job | Existing |
+| `/clipmimic:models` | List generation models via active provider | Existing |
 
 ## Provider abstraction
 
@@ -221,7 +221,7 @@ lib/
 | **Cheap analyze path** | Local ffmpeg; Whisper/vision optional / later |
 | **Generate policy** | Default mimic = prompts only (`--dry-run` equivalent); paid path opt-in |
 | **Concurrency** | Bound parallel predictions (e.g. 2) |
-| **Fail soft** | Keep succeeded clips; resume via `/video:status` / partial assemble (v0.2+) |
+| **Fail soft** | Keep succeeded clips; resume via `/clipmimic:status` / partial assemble (v0.2+) |
 
 ## Legal & ethics
 
@@ -234,5 +234,5 @@ lib/
 
 ## Relation to implementation
 
-- **v0.1 code path:** `/video:analyze`, `/video:mimic`, plus existing generate/status/models.
+- **v0.1 code path:** `/clipmimic:analyze`, `/clipmimic:mimic`, plus existing generate/status/models.
 - **Docs vs code:** If `lib/blueprint.js` and this file disagree after reconcile, **code wins** — update these docs in a follow-up; do not silently fork schemas in launch copy.

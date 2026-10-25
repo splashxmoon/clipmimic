@@ -1,11 +1,11 @@
 /**
- * /video:models
+ * /clipmimic:models
  * List public Replicate models. Replicate does not expose a video-only filter
  * on this endpoint, so the list is unfiltered and may include non-video models;
  * the caller must pick a video-generation model (owner/name:version-hash).
  *
  * Usage (from Claude Code):
- *   /video:models
+ *   /clipmimic:models
  *
  * Environment:
  *   REPLICATE_API_TOKEN  - required

@@ -1,9 +1,9 @@
 /**
- * /video:generate
+ * /clipmimic:generate
  * Create a video from a text prompt using a Replicate video model.
  *
  * Usage (from Claude Code):
- *   /video:generate <prompt>
+ *   /clipmimic:generate <prompt>
  *
  * Environment:
  *   REPLICATE_API_TOKEN  - required

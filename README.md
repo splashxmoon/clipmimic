@@ -13,6 +13,15 @@ It copies structure and style, not footage.
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-e9a448)](CONTRIBUTING.md)
 [![Claude Code skill](https://img.shields.io/badge/Claude_Code-skill-232823)](.claude/skills/video-generation/SKILL.md)
 
+<!-- DEMO SLOT: hidden until filled in. Show a 10-20 second clip: reference video -> blueprint -> shot prompts (-> generated clips, if any).
+     Option A, MP4 (plays inline): edit this file on github.com, drag the .mp4 into the editor, and put the
+     https://github.com/user-attachments/assets/... URL it inserts on its own line here.
+     Option B, GIF: commit it as assets/demo.gif (under ~10 MB) and uncomment the block below.
+
+<p align="center"><img src="assets/demo.gif" width="720" alt="clipmimic analyzing a reference Short into a blueprint, then writing new shot prompts for a different topic" /></p>
+<p align="center"><sub>Reference: [credit and link]. Model: [name and version] · Cost: [$] · Manual steps: [what you edited]</sub></p>
+-->
+
 ![An illustrated editing strip becomes a structured blueprint, then a new set of shots. Diagram only, not generated footage.](assets/banner.svg)
 
 [How it works](#how-it-works) · [Install](#install) · [Use it](#use-it) · [Commands](#commands) · [Watch in the browser](#watch-a-reference-in-the-browser) · [Platforms](#tiktok-reels-and-shorts) · [Status](#status) · [FAQ](#faq)
@@ -21,9 +30,9 @@ It copies structure and style, not footage.
 
 ![Reference video becomes a Style Blueprint, then new shot prompts, optionally generated on Replicate, then manual editing.](assets/flow.svg)
 
-1. **Analyze.** `/video:analyze` finds the scene cuts with ffmpeg and records shot lengths, pacing and aspect ratio. For a URL it also saves the title, hashtags, engagement counts and the video's own captions. The result is a **Style Blueprint**, a JSON file you can read and edit.
-2. **Enrich (optional).** `/video:watch` has Claude open the video in your browser and describe each shot, the hook, on-screen text and caption style. `/video:enrich` merges that into the blueprint.
-3. **Mimic.** `/video:mimic` turns the blueprint and your topic into one prompt per shot, matching the reference's timing.
+1. **Analyze.** `/clipmimic:analyze` finds the scene cuts with ffmpeg and records shot lengths, pacing and aspect ratio. For a URL it also saves the title, hashtags, engagement counts and the video's own captions. The result is a **Style Blueprint**, a JSON file you can read and edit.
+2. **Enrich (optional).** `/clipmimic:watch` has Claude open the video in your browser and describe each shot, the hook, on-screen text and caption style. `/clipmimic:enrich` merges that into the blueprint.
+3. **Mimic.** `/clipmimic:mimic` turns the blueprint and your topic into one prompt per shot, matching the reference's timing.
 4. **Generate (optional, paid).** Add `--generate` to send the prompts to Replicate. You assemble the clips yourself.
 
 ## Install
@@ -34,10 +43,10 @@ You need Claude Code, Node.js 18+, and `ffmpeg` (with `ffprobe`). URL references
 
 ```text
 /plugin marketplace add splashxmoon/clipmimic
-/plugin install video@video-generation-marketplace
+/plugin install clipmimic@clipmimic
 ```
 
-The plugin is named `video`, so the commands appear as `/video:analyze`, `/video:mimic` and so on.
+The plugin is named `clipmimic`, so the commands appear as `/clipmimic:analyze`, `/clipmimic:mimic` and so on.
 
 ### As project files
 
@@ -54,8 +63,8 @@ Install into the project, not `~/.claude`. The commands call the scripts by proj
 ## Use it
 
 ```text
-/video:analyze ref.mp4 --out blueprint.json
-/video:mimic blueprint.json --topic "A launch video for a refillable water bottle" --platform tiktok
+/clipmimic:analyze ref.mp4 --out blueprint.json
+/clipmimic:mimic blueprint.json --topic "A launch video for a refillable water bottle" --platform tiktok
 ```
 
 Read the blueprint and the prompts before you spend anything. Add `--keyframes frames` to `analyze` to save a frame image per shot.
@@ -78,8 +87,8 @@ export REPLICATE_API_TOKEN="your-token-here"
 Set `REPLICATE_MODEL` to `owner/name` or `owner/name:version-hash`. Check the model's current inputs and price first. Then:
 
 ```text
-/video:mimic blueprint.json --topic "..." --generate
-/video:status <job-id>
+/clipmimic:mimic blueprint.json --topic "..." --generate
+/clipmimic:status <job-id>
 ```
 
 This submits one job per shot and prints the IDs. Each attempt can be billed, so count the shots first.
@@ -90,25 +99,25 @@ Each command also has a script in `.claude/skills/video-generation/commands/`.
 
 | Command | What it does | Needs |
 | --- | --- | --- |
-| `/video:analyze <file-or-url> --out blueprint.json` | Scene cuts, shot lengths, pacing, aspect. URLs also get metadata, engagement and captions. | ffmpeg; yt-dlp for URLs. Optional `--keyframes <dir>`, `--no-metadata`, `--no-transcript` |
-| `/video:watch <url>` | Claude watches the video in your browser and records what it sees | Claude in Chrome extension |
-| `/video:enrich blueprint.json observations.json` | Merges observations into a blueprint, or builds one from them | Nothing external |
-| `/video:mimic blueprint.json --topic "..."` | One prompt per shot for your topic. Optional `--brand`, `--style`, `--platform tiktok\|reels\|shorts`, `--json`, `--generate` | Nothing external, except `--generate` |
-| `/video:generate <prompt>` | Text to video | Replicate token |
-| `/video:generate-image <image-url> <prompt>` | Image to video. A local path is not uploaded for you. | Replicate token |
-| `/video:status <job-id>` | State of a generation job | Replicate token |
-| `/video:models` | Lists Replicate models, including non-video ones | Replicate token |
+| `/clipmimic:analyze <file-or-url> --out blueprint.json` | Scene cuts, shot lengths, pacing, aspect. URLs also get metadata, engagement and captions. | ffmpeg; yt-dlp for URLs. Optional `--keyframes <dir>`, `--no-metadata`, `--no-transcript` |
+| `/clipmimic:watch <url>` | Claude watches the video in your browser and records what it sees | Claude in Chrome extension |
+| `/clipmimic:enrich blueprint.json observations.json` | Merges observations into a blueprint, or builds one from them | Nothing external |
+| `/clipmimic:mimic blueprint.json --topic "..."` | One prompt per shot for your topic. Optional `--brand`, `--style`, `--platform tiktok\|reels\|shorts`, `--json`, `--generate` | Nothing external, except `--generate` |
+| `/clipmimic:generate <prompt>` | Text to video | Replicate token |
+| `/clipmimic:generate-image <image-url> <prompt>` | Image to video. A local path is not uploaded for you. | Replicate token |
+| `/clipmimic:status <job-id>` | State of a generation job | Replicate token |
+| `/clipmimic:models` | Lists Replicate models, including non-video ones | Replicate token |
 
 ## Watch a reference in the browser
 
-With the [Claude in Chrome](https://claude.com/chrome) extension, `/video:watch <url>` has Claude:
+With the [Claude in Chrome](https://claude.com/chrome) extension, `/clipmimic:watch <url>` has Claude:
 
 1. open the post in a tab you can see and read the title, hashtags and engagement numbers,
 2. measure the `<video>` element,
 3. seek to each shot and take a screenshot,
-4. write what it saw to `observations.json` and run `/video:enrich`.
+4. write what it saw to `observations.json` and run `/clipmimic:enrich`.
 
-That fills the gaps ffmpeg can't: hook text and type, shot descriptions, on-screen text, caption style, music and call to action. For the best result, run `/video:analyze` first for exact cut times, then `/video:watch`. Without the extension, the command says so and falls back to `/video:analyze`.
+That fills the gaps ffmpeg can't: hook text and type, shot descriptions, on-screen text, caption style, music and call to action. For the best result, run `/clipmimic:analyze` first for exact cut times, then `/clipmimic:watch`. Without the extension, the command says so and falls back to `/clipmimic:analyze`.
 
 It uses a browser session you control. It does not get around logins or paywalls.
 
@@ -141,8 +150,6 @@ More detail: [architecture and Blueprint schema](docs/ARCHITECTURE.md) · [roadm
 | [MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo), [ShortGPT](https://github.com/RayVentura/ShortGPT) | Topic to video from stock clips | clipmimic starts from one reference's pacing and hook |
 | [reelmimic](https://github.com/edenfunf/reelmimic) | Analyzes a reference and makes a 2D animation | clipmimic is a Claude Code skill and doesn't render animation |
 
-Details and dates: [docs/COMPETITIVE.md](docs/COMPETITIVE.md).
-
 ## FAQ
 
 **Does it copy the reference video?**
@@ -158,7 +165,7 @@ The code is [MIT licensed](LICENSE). Analysis and prompt planning run locally an
 Versioned JSON (`schemaVersion: "1.0"`): source, duration, aspect, hook, shots with start and end times, pacing, captions, audio, call to action, plus metadata and engagement for URLs. Example: [examples/style-blueprint.json](examples/style-blueprint.json).
 
 **Which models work?**
-Replicate is the only provider. Pick a model that matches the command's inputs, and check its version and price. `/video:models` lists everything, not just video models.
+Replicate is the only provider. Pick a model that matches the command's inputs, and check its version and price. `/clipmimic:models` lists everything, not just video models.
 
 **Do I get a finished video?**
 No. You get shot prompts and, optionally, generated clips. Editing, audio and captions are up to you.
@@ -170,6 +177,6 @@ No. Pacing can inform an experiment. It doesn't carry over audience, distributio
 
 Bug reports, fixtures and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). Report security problems through [SECURITY.md](SECURITY.md).
 
-[MIT License](LICENSE) · [Architecture](docs/ARCHITECTURE.md) · [Roadmap](docs/ROADMAP.md) · [Discoverability plan](docs/DISCOVERABILITY.md)
+[MIT License](LICENSE) · [Architecture](docs/ARCHITECTURE.md) · [Roadmap](docs/ROADMAP.md)
 
 [![Star history](https://api.star-history.com/svg?repos=splashxmoon/clipmimic&type=Date)](https://star-history.com/#splashxmoon/clipmimic&Date)
